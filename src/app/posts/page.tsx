@@ -4,21 +4,44 @@ import axiosReq from "../axios-interceptor";
 import { PostCard } from "../components/post-card";
 import { Post } from "../interfaces";
 import { PenSquare, Sparkles } from "lucide-react";
+import Pagination from "../components/pagination";
+import { AxiosError } from "axios";
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [error, setError] = useState("");
+  const itemsPerPage = 10;
 
   useEffect(() => {
-    axiosReq
-      .get("/posts")
-      .then((res) => {
-        console.log(res.data);
-        setPosts(res.data);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
+    const fetchPosts = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const { status, data } = await axiosReq.get("/posts", {
+          params: { page: currentPage, limit: itemsPerPage },
+        });
+
+        if (status === 200) {
+          setPosts(data.posts);
+          setTotalPages(data.pages);
+        }
+      } catch (error: unknown) {
+        if (error instanceof AxiosError) {
+          setError(
+            error.response?.data?.message ||
+              "Failed to Load posts! Please try again later"
+          );
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, [currentPage]);
 
   if (loading) {
     return (
@@ -31,29 +54,24 @@ const Posts = () => {
     );
   }
 
-  const authorPostCounts = posts.reduce((acc, post) => {
-    const authorKey =
-      typeof post.authorId === "string" ? post.authorId : post.authorId._id;
-    acc[authorKey] = (acc[authorKey] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-
-  const authors = Object.keys(authorPostCounts).length;
-  const mostActivePosts =
-    posts.length > 0 ? Math.max(...Object.values(authorPostCounts)) : 0;
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-teal-900">
-            Community Posts
+            Posts
           </h1>
-          <p className="text-lg max-w-2xl mx-auto text-teal-800">
+          <p className="text-lg max-w-2xl mx-auto text-teal-600">
             Discover the latest developer insights, tutorials, and knowledge
             shared by our community
           </p>
         </div>
+
+        {error && (
+          <div className="mb-6 p-4 rounded-xl shadow-sm border-l-4 bg-red-50 border-red-500 text-red-600">
+            <p>{error}</p>
+          </div>
+        )}
 
         {posts.length === 0 ? (
           <div className="text-center py-16">
@@ -75,40 +93,23 @@ const Posts = () => {
             </button>
           </div>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <PostCard key={post._id} post={post} />
-            ))}
-          </div>
-        )}
-
-        {posts.length > 0 && (
-          <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-8 px-8 py-4 rounded-2xl bg-emerald-50 border border-teal-200">
-              <div>
-                <div className="text-2xl font-bold text-teal-900">
-                  {posts.length}
-                </div>
-                <div className="text-sm text-teal-800">Total Posts</div>
-              </div>
-              <div className="w-px h-12 bg-teal-200"></div>
-              <div>
-                <div className="text-2xl font-bold text-teal-900">
-                  {authors}
-                </div>
-                <div className="text-sm text-teal-800">Active Authors</div>
-              </div>
-              <div className="w-px h-12 bg-teal-200"></div>
-              <div>
-                <div className="text-2xl font-bold text-teal-900">
-                  {mostActivePosts}
-                </div>
-                <div className="text-sm text-teal-800">
-                  Most Active Author Posts
-                </div>
-              </div>
+          <>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
             </div>
-          </div>
+
+            {totalPages > 1 && (
+              <div className="mt-8">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  setCurrentPage={setCurrentPage}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

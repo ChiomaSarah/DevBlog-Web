@@ -5,10 +5,10 @@ import { calculateReadingTime, formatDate, getExcerpt } from "../utils";
 
 export function PostCard({ post }: PostCardProps) {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-lg border border-mint-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:border-teal-400 group cursor-pointer">
+    <div className="bg-white rounded-2xl p-6 shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl group">
       <div className="pb-4 mb-4 border-b border-mint-100">
         <div className="flex items-start justify-between">
-          <h2 className="text-xl font-bold leading-tight text-teal-900 transition-colors group-hover:text-teal-950 cursor-pointer">
+          <h2 className="text-xl font-bold leading-tight text-teal-900 transition-colors group-hover:text-teal-950">
             {post.title}
           </h2>
         </div>

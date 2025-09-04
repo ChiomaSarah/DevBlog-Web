@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosReq = axios.create({
-  baseURL: "http://localhost:2025",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
 // Request interceptor: attach JWT.

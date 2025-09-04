@@ -8,7 +8,7 @@ export const GlassToast: React.FC<GlassToastProps> = ({
   message,
   description,
   type = "success",
-  duration = 3000,
+  duration = 5000,
   isVisible,
   onClose,
   position = "top-right",
@@ -34,7 +34,7 @@ export const GlassToast: React.FC<GlassToastProps> = ({
     setTimeout(() => {
       setIsMounted(false);
       onClose();
-    }, 300);
+    }, 500);
   };
 
   if (!isMounted) return null;
@@ -45,28 +45,28 @@ export const GlassToast: React.FC<GlassToastProps> = ({
       icon: CheckCircle,
       bgColor: "bg-green-500/20",
       borderColor: "border-green-500/30",
-      textColor: "text-green-700",
+      textColor: "text-white",
       iconColor: "text-green-600",
     },
     error: {
       icon: AlertCircle,
       bgColor: "bg-red-500/20",
       borderColor: "border-red-500/30",
-      textColor: "text-red-700",
+      textColor: "text-white",
       iconColor: "text-red-600",
     },
     warning: {
       icon: AlertTriangle,
       bgColor: "bg-amber-500/20",
       borderColor: "border-amber-500/30",
-      textColor: "text-amber-700",
+      textColor: "text-white",
       iconColor: "text-amber-600",
     },
     info: {
       icon: Info,
       bgColor: "bg-blue-500/20",
       borderColor: "border-blue-500/30",
-      textColor: "text-blue-700",
+      textColor: "text-white",
       iconColor: "text-blue-600",
     },
   };

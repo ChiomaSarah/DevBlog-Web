@@ -26,15 +26,14 @@ export const Navbar = () => {
       <nav
         className="
           flex justify-between items-center px-4 sm:px-6 lg:px-8 
-          shadow-md rounded-b-lg h-20 
-          bg-gradient-to-r from-teal-50 to-teal-100 border-b border-teal-200
+          shadow-md h-20 
+          bg-teal-400
         "
       >
-        <Link href="/" className="flex items-center space-x-2 group">
+        <Link href="/" className="flex items-center space-x-1 group">
           <div
             className="
               p-2 rounded-full shadow-sm bg-white 
-              group-hover:scale-110 transition-transform duration-200
             "
           >
             <PenTool className="h-6 w-6 text-teal-500" />
@@ -42,7 +41,7 @@ export const Navbar = () => {
           <span
             className="
               font-bold text-2xl bg-clip-text text-transparent 
-              bg-gradient-to-r from-teal-500 to-teal-700
+              bg-gradient-to-r from-white/70 to-white/90 
             "
           >
             DevBlog

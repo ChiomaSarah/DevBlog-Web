@@ -32,6 +32,7 @@ const PostDetails = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
@@ -62,8 +63,9 @@ const PostDetails = () => {
         setShowSuccessToast(true);
 
         setTimeout(() => {
+          setIsNavigating(true); // Show spinner when navigating to the edit page.
           router.push("/");
-        }, 2000);
+        }, 1500);
       }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
@@ -75,15 +77,23 @@ const PostDetails = () => {
     }
   };
 
-  if (isLoading)
+  const handleEdit = () => {
+    setIsNavigating(true);
+    router.push(`/posts/edit/${post?._id}`);
+  };
+
+  if (isLoading || isNavigating) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mint-50 to-mint-100">
         <div className="flex flex-col items-center gap-4">
           <div className="w-8 h-8 border-2 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
-          <Spinner />
+          <Spinner
+            text={isLoading ? "Loading post..." : "Loading edit page..."}
+          />
         </div>
       </div>
     );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-mint-50 to-mint-100">
@@ -147,7 +157,7 @@ const PostDetails = () => {
         )}
 
         {!error && post && (
-          <article className="bg-white rounded-2xl p-6 md:p-8 shadow-xl border border-mint-200">
+          <article className="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
             <header className="mb-8 pb-6 border-b border-mint-200">
               <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-teal-900">
                 {post?.title}
@@ -180,9 +190,7 @@ const PostDetails = () => {
                 {user && user._id === post?.authorId?._id && (
                   <div className="flex gap-2 mt-4 sm:mt-0">
                     <button
-                      onClick={() =>
-                        router.push(`/posts/edit-post/${post?._id}`)
-                      }
+                      onClick={handleEdit}
                       className="flex items-center justify-center p-3 border rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-mint-50 border-mint-200 text-teal-700 hover:bg-mint-100 hover:border-teal-400 cursor-pointer"
                       title="Edit post"
                     >

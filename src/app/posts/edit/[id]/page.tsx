@@ -89,7 +89,7 @@ const EditPost = () => {
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-mint-50 to-mint-200">
-        <div className="border-b border-mint-200 bg-white/80 backdrop-blur-sm">
+        <div className=" bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <button
               onClick={() => router.push(`/posts/${id}`)}
@@ -102,10 +102,10 @@ const EditPost = () => {
         </div>
 
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-mint-200">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="px-6 py-8 bg-gradient-to-r from-teal-500 to-teal-700">
               <h1 className="text-2xl md:text-3xl font-bold text-white">
-                Edit Your Post
+                Edit Post
               </h1>
               <p className="text-sm mt-2 text-mint-100">
                 Make changes to your masterpiece
@@ -137,7 +137,11 @@ const EditPost = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     placeholder="Craft an engaging title..."
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-mint-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200"
+                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y"
+                    style={{
+                      border: "1px solid #5eead4",
+                      borderColor: "#5eead4",
+                    }}
                   />
                 </div>
 
@@ -155,7 +159,11 @@ const EditPost = () => {
                     required
                     placeholder="Pour your thoughts here..."
                     rows={12}
-                    className="w-full rounded-xl px-4 py-3 text-sm border border-mint-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 transition-all duration-200 resize-y min-h-[200px]"
+                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y min-h-[200px]"
+                    style={{
+                      border: "1px solid #5eead4",
+                      borderColor: "#5eead4",
+                    }}
                   />
                 </div>
 
@@ -191,7 +199,7 @@ const EditPost = () => {
           isVisible={showSuccessToast}
           onClose={() => setShowSuccessToast(false)}
           message="Post updated successfully!"
-          description="Redirecting to posts..."
+          description="Redirecting to post..."
           type="success"
         />
       </div>

@@ -37,3 +37,9 @@ export interface GlassToastProps {
     | "top-center"
     | "bottom-center";
 }
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  setCurrentPage: (page: number) => void;
+}
