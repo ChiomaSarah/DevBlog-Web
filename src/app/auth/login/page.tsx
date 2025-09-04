@@ -43,7 +43,7 @@ const Login = () => {
 
         setShowToast(true);
         setTimeout(() => {
-          router.push("/");
+          router.push("/posts");
         }, 1200);
       }
     } catch (error: unknown) {
