@@ -42,7 +42,7 @@ const Register = () => {
       }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
-        setError(error.response?.data?.message || "Sign Up failed!");
+        setError(error.response?.data?.message || "User registeration failed!");
       }
     } finally {
       setLoading(false);
@@ -159,7 +159,7 @@ const Register = () => {
 
       <GlassToast
         message="Account created successfully!"
-        description="You can now log in."
+        description="Redirecting to login."
         type="success"
         isVisible={showToast}
         onClose={() => setShowToast(false)}

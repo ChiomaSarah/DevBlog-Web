@@ -143,7 +143,7 @@ const PostDetails = () => {
       )}
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <Link href="/">
+        <Link href="/posts">
           <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer mb-6 group">
             <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
             Back to Posts

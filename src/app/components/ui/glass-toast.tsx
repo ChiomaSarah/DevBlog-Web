@@ -39,35 +39,38 @@ export const GlassToast: React.FC<GlassToastProps> = ({
 
   if (!isMounted) return null;
 
-  // Configurations for different toast types.
   const toastConfig = {
     success: {
       icon: CheckCircle,
-      bgColor: "bg-green-500/20",
-      borderColor: "border-green-500/30",
+      bgColor: "bg-green-700/80",
+      borderColor: "border-green-700/60",
       textColor: "text-white",
-      iconColor: "text-green-600",
+      iconColor: "text-green-400",
+      progressBarColor: "bg-green-400/70",
     },
     error: {
       icon: AlertCircle,
-      bgColor: "bg-red-500/20",
-      borderColor: "border-red-500/30",
+      bgColor: "bg-red-700/80",
+      borderColor: "border-red-700/60",
       textColor: "text-white",
-      iconColor: "text-red-600",
+      iconColor: "text-red-400",
+      progressBarColor: "bg-red-400/70",
     },
     warning: {
       icon: AlertTriangle,
-      bgColor: "bg-amber-500/20",
-      borderColor: "border-amber-500/30",
+      bgColor: "bg-amber-700/80",
+      borderColor: "border-amber-700/60",
       textColor: "text-white",
-      iconColor: "text-amber-600",
+      iconColor: "text-amber-400",
+      progressBarColor: "bg-amber-400/70",
     },
     info: {
       icon: Info,
-      bgColor: "bg-blue-500/20",
-      borderColor: "border-blue-500/30",
+      bgColor: "bg-blue-700/80",
+      borderColor: "border-blue-700/60",
       textColor: "text-white",
-      iconColor: "text-blue-600",
+      iconColor: "text-blue-400",
+      progressBarColor: "bg-blue4500/70",
     },
   };
 
@@ -77,9 +80,9 @@ export const GlassToast: React.FC<GlassToastProps> = ({
     borderColor,
     textColor,
     iconColor,
+    progressBarColor,
   } = toastConfig[type];
 
-  // Position classes.
   const positionClasses = {
     "top-right": "top-4 right-4",
     "top-left": "top-4 left-4",
@@ -89,7 +92,6 @@ export const GlassToast: React.FC<GlassToastProps> = ({
     "bottom-center": "bottom-4 left-1/2 transform -translate-x-1/2",
   };
 
-  // Animation classes based on position.
   const getAnimationClasses = () => {
     if (position.includes("bottom")) {
       return {
@@ -135,12 +137,7 @@ export const GlassToast: React.FC<GlassToastProps> = ({
         {duration > 0 && (
           <div className="w-full bg-white/20 rounded-full h-1 mt-3">
             <div
-              className={`h-1 rounded-full ${bgColor
-                .replace("bg-", "bg-")
-                .replace(
-                  "/20",
-                  "/60"
-                )} transition-all duration-${duration} ease-linear`}
+              className={`h-1 rounded-full ${progressBarColor} transition-all duration-${duration} ease-linear`}
               style={{
                 animation: `progressBar ${duration}ms linear forwards`,
                 animationPlayState: isClosing ? "paused" : "running",

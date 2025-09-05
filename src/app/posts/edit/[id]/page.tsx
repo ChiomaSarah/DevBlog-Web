@@ -8,6 +8,7 @@ import { Spinner } from "@/app/components/ui/spinner";
 import { ArrowLeft, X, FileOutput } from "lucide-react";
 import { GlassToast } from "@/app/components/ui/glass-toast";
 import { Post } from "@/app/interfaces";
+import Link from "next/link";
 
 const EditPost = () => {
   const [post, setPost] = useState<Post | null>(null);
@@ -91,13 +92,12 @@ const EditPost = () => {
       <div className="min-h-screen bg-gradient-to-br from-mint-50 to-mint-200">
         <div className=" bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <button
-              onClick={() => router.push(`/posts/${id}`)}
-              className="flex items-center gap-2 text-teal-800 hover:text-teal-900 transition-colors group"
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-medium">Back to Post</span>
-            </button>
+            <Link href={`/posts/${id}`}>
+              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer mb-6 group">
+                <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
+                Back to Post
+              </span>
+            </Link>
           </div>
         </div>
 
@@ -167,7 +167,7 @@ const EditPost = () => {
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-mint-200">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-mint-200">
                   <button
                     type="submit"
                     disabled={isSumitting}

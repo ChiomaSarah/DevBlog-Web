@@ -8,6 +8,7 @@ import { AxiosError } from "axios";
 import { Spinner } from "@/app/components/ui/spinner";
 import { GlassToast } from "@/app/components/ui/glass-toast";
 import { ArrowLeft, Send, X } from "lucide-react";
+import Link from "next/link";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -42,25 +43,15 @@ const CreatePost = () => {
 
   return (
     <ProtectedRoute>
-      <div
-        className="min-h-screen"
-        style={{
-          background: "linear-gradient(135deg, #f0fdf9 0%, #ccfbef 100%)",
-        }}
-      >
-        <div
-          className="border-b bg-white/80 backdrop-blur-sm"
-          style={{ borderColor: "#99f6e0" }}
-        >
+      <div className="min-h-screen">
+        <div className=" bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <button
-              onClick={() => router.push("/")}
-              className="flex items-center gap-2 transition-colors group"
-              style={{ color: "#0f766e" }}
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm font-medium">Back to Home</span>
-            </button>
+            <Link href="/">
+              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer mb-6 group">
+                <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
+                Back to Home
+              </span>
+            </Link>
           </div>
         </div>
 

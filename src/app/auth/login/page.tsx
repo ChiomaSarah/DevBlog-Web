@@ -67,7 +67,7 @@ const Login = () => {
               Welcome Back!
             </h1>
             <p className="text-sm md:text-base text-teal-700">
-              Sign in to your account to continue writing and sharing your
+              Login to your account to continue writing and sharing your
               developer journey.
             </p>
           </div>
@@ -121,11 +121,11 @@ const Login = () => {
               className="w-full flex justify-center items-center py-3 px-4 rounded-xl font-semibold text-white bg-gradient-to-r from-teal-400 to-teal-600 hover:from-teal-500 hover:to-teal-700 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 cursor-pointer"
             >
               {loading ? (
-                <Spinner text="Signing in..." />
+                <Spinner text="Logging you in..." />
               ) : (
                 <>
                   <LogIn className="w-4 h-4 mr-2" />
-                  Sign In
+                  Login
                 </>
               )}
             </button>
@@ -139,7 +139,7 @@ const Login = () => {
                 className="font-semibold inline-flex items-center text-teal-600 hover:text-teal-700 transition-colors cursor-pointer"
               >
                 <UserPlus className="w-4 h-4 mr-1" />
-                Sign up
+                Register
               </Link>
             </p>
           </div>
