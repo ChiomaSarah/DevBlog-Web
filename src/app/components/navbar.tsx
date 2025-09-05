@@ -92,7 +92,7 @@ export const Navbar = () => {
               </Link>
 
               <Link
-                href="/auth/signup"
+                href="/auth/register"
                 className="
                   flex items-center space-x-1 text-white px-4 py-2 rounded-full 
                   transition-all duration-200 shadow-md hover:shadow-lg 
@@ -102,7 +102,7 @@ export const Navbar = () => {
                 "
               >
                 <UserPlus className="h-4 w-4" />
-                <span>Sign Up</span>
+                <span>Register</span>
               </Link>
             </>
           )}
@@ -156,7 +156,7 @@ export const Navbar = () => {
                     Login
                   </Link>
                   <Link
-                    href="/auth/signup"
+                    href="/auth/register"
                     className="
                       block w-full text-center px-4 py-3 rounded-lg 
                       bg-gradient-to-r from-teal-500 to-teal-700 text-white font-medium
@@ -164,7 +164,7 @@ export const Navbar = () => {
                     "
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Sign Up
+                    Register
                   </Link>
                 </>
               )}

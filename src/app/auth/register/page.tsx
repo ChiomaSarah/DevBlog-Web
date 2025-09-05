@@ -9,7 +9,7 @@ import { AxiosError } from "axios";
 import { UserPlus, LogIn } from "lucide-react";
 import { GlassToast } from "@/app/components/ui/glass-toast";
 
-const SignUp = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,7 +29,7 @@ const SignUp = () => {
     setLoading(true);
 
     try {
-      const { status } = await axiosReq.post("/auth/signup", {
+      const { status } = await axiosReq.post("/auth/register", {
         username,
         password,
       });
@@ -168,4 +168,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

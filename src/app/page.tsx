@@ -154,7 +154,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/auth/signup"
+              href="/auth/register"
               className="inline-flex items-center justify-center text-white font-medium rounded-xl px-6 py-3 transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
               style={{
                 background: "linear-gradient(90deg, #14b8a6 0%, #0d9488 100%)",
