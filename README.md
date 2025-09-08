@@ -1,5 +1,5 @@
 
-# DevBlog Frontend
+# DevBlog Web
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 Frontend application for **DevBlog**, a full-stack blogging platform where developers can share insights, tutorials, and experiences.  
