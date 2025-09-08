@@ -20,7 +20,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Icons**: Lucide React
-- **State**: React hooks
+- **State**: React hooks, Redux Toolkit
 
 ## Getting Started
 ```bash
