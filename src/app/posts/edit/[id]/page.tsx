@@ -15,7 +15,7 @@ const EditPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
-  const [isSumitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
@@ -34,7 +34,7 @@ const EditPost = () => {
         }
       } catch (error: unknown) {
         if (error instanceof AxiosError) {
-          setError(error.response?.data?.message || "Failed to update post!");
+          setError(error.response?.data?.message || "Failed to load post!");
         }
       } finally {
         setLoading(false);
@@ -56,7 +56,6 @@ const EditPost = () => {
         title,
         content,
       });
-
       if (status === 200) {
         setShowSuccessToast(true);
 
@@ -78,9 +77,7 @@ const EditPost = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-mint-50 to-mint-200">
-        <div className="flex flex-col items-center gap-4">
-          <Spinner />
-        </div>
+        <Spinner />
       </div>
     );
   }
@@ -90,10 +87,10 @@ const EditPost = () => {
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-mint-50 to-mint-200">
-        <div className=" bg-white/80 backdrop-blur-sm">
+        <div className="bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <Link href={`/posts/${id}`}>
-              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer mb-6 group">
+              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer my-6 group">
                 <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
                 Back to Post
               </span>
@@ -107,7 +104,7 @@ const EditPost = () => {
               <h1 className="text-2xl md:text-3xl font-bold text-white">
                 Edit Post
               </h1>
-              <p className="text-sm mt-2 text-mint-100">
+              <p className="text-sm mt-2 text-teal-100">
                 Make changes to your masterpiece
               </p>
             </div>
@@ -137,11 +134,7 @@ const EditPost = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     placeholder="Craft an engaging title..."
-                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y"
-                    style={{
-                      border: "1px solid #5eead4",
-                      borderColor: "#5eead4",
-                    }}
+                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 border border-teal-300 transition-all duration-200 resize-y"
                   />
                 </div>
 
@@ -159,21 +152,17 @@ const EditPost = () => {
                     required
                     placeholder="Pour your thoughts here..."
                     rows={12}
-                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y min-h-[200px]"
-                    style={{
-                      border: "1px solid #5eead4",
-                      borderColor: "#5eead4",
-                    }}
+                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 border border-teal-300 transition-all duration-200 resize-y min-h-[200px]"
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-mint-200">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-teal-200">
                   <button
                     type="submit"
-                    disabled={isSumitting}
+                    disabled={isSubmitting}
                     className="flex-1 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg transform hover:-translate-y-0.5 bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800 cursor-pointer"
                   >
-                    {isSumitting ? (
+                    {isSubmitting ? (
                       <Spinner size={16} color="text-white" />
                     ) : (
                       <FileOutput className="w-4 h-4" />
@@ -184,7 +173,7 @@ const EditPost = () => {
                   <button
                     type="button"
                     onClick={() => router.push(`/posts/${id}`)}
-                    className="flex-1 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 border border-mint-300 text-teal-800 hover:border-teal-500 hover:bg-mint-50 cursor-pointer"
+                    className="flex-1 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 border border-teal-300 text-teal-800 hover:border-teal-500 hover:bg-teal-50 cursor-pointer"
                   >
                     <X className="w-4 h-4" />
                     Cancel

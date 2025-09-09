@@ -49,7 +49,7 @@ export const Navbar = () => {
 
   return (
     <header className="w-full fixed top-0 left-0 z-50">
-      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20 bg-teal-400 shadow-sm">
+      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 h-20 bg-teal-700 bg-opacity-80 shadow-sm">
         <Link
           href="/"
           className="flex items-center space-x-1 group"
@@ -79,11 +79,11 @@ export const Navbar = () => {
                 <div className="h-8 w-8 rounded-full bg-teal-100 flex items-center justify-center">
                   <User className="h-4 w-4 text-teal-600" />
                 </div>
-                <span className="text-sm font-medium text-teal-800">
+                <span className="text-sm font-medium text-white">
                   {user.username}
                 </span>
                 <ChevronDown
-                  className={`h-4 w-4 text-gray-500 transition-transform ${
+                  className={`h-4 w-4 text-teal-500 transition-transform cursor-pointer${
                     isUserDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -94,9 +94,6 @@ export const Navbar = () => {
                   <div className="px-4 py-2 border-b border-gray-100">
                     <p className="text-sm font-medium text-gray-700">
                       {user.username}
-                    </p>
-                    <p className="text-xs text-gray-500 truncate">
-                      {user.email}
                     </p>
                   </div>
 

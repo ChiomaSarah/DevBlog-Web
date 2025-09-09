@@ -29,7 +29,7 @@ const PostDetails = () => {
   const [post, setPost] = useState<Post | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
@@ -70,7 +70,7 @@ const PostDetails = () => {
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         setError(error.response?.data?.message || "Failed to delete post!");
-        setShowDeleteConfirm(false);
+        setShowConfirmDeleteModal(false);
       }
     } finally {
       setIsDeleting(false);
@@ -97,7 +97,7 @@ const PostDetails = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-mint-50 to-mint-100">
-      {showDeleteConfirm && (
+      {showConfirmDeleteModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl border border-mint-200">
             <div className="flex items-center justify-between mb-4">
@@ -106,7 +106,7 @@ const PostDetails = () => {
                 Confirm Deletion
               </h3>
               <button
-                onClick={() => setShowDeleteConfirm(false)}
+                onClick={() => setShowConfirmDeleteModal(false)}
                 className="text-teal-700 hover:text-teal-900 transition-colors cursor-pointer"
               >
                 <X className="h-5 w-5" />
@@ -120,7 +120,7 @@ const PostDetails = () => {
 
             <div className="flex gap-3 justify-end">
               <button
-                onClick={() => setShowDeleteConfirm(false)}
+                onClick={() => setShowConfirmDeleteModal(false)}
                 disabled={isDeleting}
                 className="px-4 py-2 font-medium rounded-xl text-teal-700 hover:text-teal-900 transition-colors disabled:opacity-50"
               >
@@ -197,7 +197,7 @@ const PostDetails = () => {
                       <Edit3 className="h-5 w-5" />
                     </button>
                     <button
-                      onClick={() => setShowDeleteConfirm(true)}
+                      onClick={() => setShowConfirmDeleteModal(true)}
                       className="flex items-center justify-center p-3 border rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 bg-red-50 border-red-200 text-red-500 hover:bg-red-100 hover:border-red-400 cursor-pointer"
                       title="Delete post"
                     >

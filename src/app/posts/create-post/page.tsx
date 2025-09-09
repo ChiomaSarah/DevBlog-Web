@@ -47,7 +47,7 @@ const CreatePost = () => {
         <div className=" bg-white/80 backdrop-blur-sm">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <Link href="/">
-              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer mb-6 group">
+              <span className="inline-flex items-center text-sm font-medium text-teal-700 hover:text-teal-900 transition-colors cursor-pointer my-6 group">
                 <ArrowLeft className="h-4 w-4 mr-2 transition-transform group-hover:-translate-x-1" />
                 Back to Home
               </span>
@@ -56,20 +56,12 @@ const CreatePost = () => {
         </div>
 
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div
-            className="bg-white rounded-2xl shadow-xl overflow-hidden"
-            style={{ borderColor: "#99f6e0", borderWidth: "1px" }}
-          >
-            <div
-              className="px-6 py-8"
-              style={{
-                background: "linear-gradient(90deg, #14b8a6 0%, #0d9488 100%)",
-              }}
-            >
+          <div className="bg-white rounded-2xl shadow-xl border border-teal-200 overflow-hidden">
+            <div className="px-6 py-8 bg-gradient-to-r from-teal-500 to-teal-700">
               <h1 className="text-2xl md:text-3xl font-bold text-white">
                 Create New Post
               </h1>
-              <p className="text-sm mt-2" style={{ color: "#ccfbef" }}>
+              <p className="text-sm mt-2 text-teal-100">
                 Share your thoughts with the world
               </p>
             </div>
@@ -88,7 +80,7 @@ const CreatePost = () => {
                 <div>
                   <label
                     htmlFor="title"
-                    className="block text-sm font-semibold text-slate-800 mb-2"
+                    className="block text-sm font-semibold text-teal-900 mb-2"
                   >
                     Title
                   </label>
@@ -99,18 +91,14 @@ const CreatePost = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     required
                     placeholder="Craft an engaging title..."
-                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y"
-                    style={{
-                      border: "1px solid #5eead4",
-                      borderColor: "#5eead4",
-                    }}
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-200 resize-y"
                   />
                 </div>
 
                 <div>
                   <label
                     htmlFor="content"
-                    className="block text-sm font-semibold text-slate-800 mb-2"
+                    className="block text-sm font-semibold text-teal-900 mb-2"
                   >
                     Content
                   </label>
@@ -121,29 +109,15 @@ const CreatePost = () => {
                     required
                     placeholder="Pour your thoughts here..."
                     rows={12}
-                    className="w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 resize-y min-h-[200px]"
-                    style={{
-                      border: "1px solid #5eead4",
-                      borderColor: "#5eead4",
-                    }}
+                    className="w-full rounded-xl px-4 py-3 text-sm border border-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-200 resize-y min-h-[200px]"
                   />
                 </div>
 
-                <div
-                  className="flex flex-col sm:flex-row gap-3 pt-4"
-                  style={{ borderTop: "1px solid #99f6e0" }}
-                >
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-teal-200">
                   <button
                     type="submit"
                     disabled={loading}
-                    className="
-                                flex-1 text-white px-6 py-3 rounded-xl text-sm font-semibold 
-                                transition-all duration-200 disabled:opacity-50 flex items-center 
-                                justify-center gap-2 shadow-lg transform cursor-pointer
-                                bg-gradient-to-r from-teal-500 to-teal-700
-                                hover:from-teal-600 hover:to-teal-800
-                                hover:-translate-y-0.5 hover:shadow-xl
-                              "
+                    className="flex-1 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg transform cursor-pointer bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800 hover:-translate-y-0.5 hover:shadow-xl"
                   >
                     {loading ? (
                       <Spinner className="w-4 h-4" />
@@ -156,12 +130,7 @@ const CreatePost = () => {
                   <button
                     type="button"
                     onClick={() => router.push("/")}
-                    className="
-    flex-1 px-6 py-3 rounded-xl text-sm font-semibold transition-all 
-    duration-200 flex items-center justify-center gap-2 cursor-pointer
-    border border-teal-300 text-teal-800
-    hover:bg-teal-50 hover:border-teal-500
-  "
+                    className="flex-1 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer border border-teal-300 text-teal-800 hover:bg-teal-50 hover:border-teal-500"
                   >
                     <X className="w-4 h-4" />
                     Cancel
