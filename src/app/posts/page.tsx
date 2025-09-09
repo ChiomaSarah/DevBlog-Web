@@ -4,8 +4,10 @@ import axiosReq from "../axios-interceptor";
 import { PostCard } from "../components/post-card";
 import { Post } from "../interfaces";
 import { PenSquare, Sparkles } from "lucide-react";
-import Pagination from "../components/pagination";
+import { Pagination } from "../components/pagination";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+import { PostCardSkeleton } from "../components/ui/post-card-skeleton";
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -14,6 +16,7 @@ const Posts = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [error, setError] = useState("");
   const itemsPerPage = 10;
+  const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -32,7 +35,7 @@ const Posts = () => {
         if (error instanceof AxiosError) {
           setError(
             error.response?.data?.message ||
-              "Failed to Load posts! Please try again later"
+              "Failed to load posts! Please try again later."
           );
         }
       } finally {
@@ -43,13 +46,18 @@ const Posts = () => {
     fetchPosts();
   }, [currentPage]);
 
+  const SkeletonCards = () => (
+    <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full">
+      {Array.from({ length: itemsPerPage }).map((_, i) => (
+        <PostCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-8 h-8 border-2 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-sm text-teal-800">Loading posts...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 p-8">
+        <SkeletonCards />
       </div>
     );
   }
@@ -63,7 +71,7 @@ const Posts = () => {
           </h1>
           <p className="text-lg max-w-2xl mx-auto text-teal-600">
             Discover the latest developer insights, tutorials, and knowledge
-            shared by our community
+            shared by our community.
           </p>
         </div>
 
@@ -85,7 +93,7 @@ const Posts = () => {
               Be the first to share your knowledge and inspire others!
             </p>
             <button
-              onClick={() => (window.location.href = "/create-post")}
+              onClick={() => router.push("/posts/create-post")}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white shadow-lg transform transition-all duration-200 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 hover:-translate-y-0.5 hover:shadow-xl"
             >
               <PenSquare className="w-4 h-4" />
@@ -94,7 +102,7 @@ const Posts = () => {
           </div>
         ) : (
           <>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 w-full">
               {posts.map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}

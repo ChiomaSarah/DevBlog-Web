@@ -1,6 +1,6 @@
 import { PaginationProps } from "../interfaces";
 
-const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   setCurrentPage,
@@ -49,5 +49,3 @@ const Pagination: React.FC<PaginationProps> = ({
     </nav>
   );
 };
-
-export default Pagination;
